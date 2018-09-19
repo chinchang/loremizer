@@ -1,27 +1,22 @@
 {
+	"description": "lorem ipsum-izes any web page",
+	"manifest_version": 2,
+	"name": "loremiscous",
+	"version": "1.0",
+	"homepage_url": "https://github.com/chinchang/loremiscous",
 
-  "description": "lorem ipsum-izes any web page",
-  "manifest_version": 2,
-  "name": "loremiscous",
-  "version": "1.0",
-  "homepage_url": "https://github.com/chinchang/loremiscous",
+	"background": {
+		"scripts": ["background.js"]
+	},
 
-  "background": {
-    "scripts": ["background.js"]
-  },
+	"browser_action": {
+		"default_icon": "icons/off.png",
+		"browser_style": true
+	},
+	"icons": {
+		"16": "icons/off.png",
+		"48": "icons/off.png"
+	},
 
-  "browser_action": {
-    "default_icon": "icons/off.svg",
-    "browser_style": true
-  },
-  "icons": {
-    "16": "icons/off.svg",
-    "48": "icons/off.svg"
-  },
-
-  "permissions": [
-    "activeTab",
-    "tabs"
-  ]
-
+	"permissions": ["activeTab", "tabs"]
 }
