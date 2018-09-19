@@ -30,6 +30,8 @@ window.loremiscous =
 		function handleIframes() {
 			var iframes = [...document.querySelectorAll('iframe')];
 			iframes.forEach(iframe => {
+				const lastValue = iframe.style.filter;
+				addOperation(() => (iframe.style.filter = lastValue));
 				iframe.style.filter = 'blur(4px)';
 			});
 		}
@@ -37,6 +39,8 @@ window.loremiscous =
 		function handleFormInputs() {
 			var inputs = [...document.querySelectorAll('input, textarea')];
 			inputs.forEach(input => {
+				const lastValue = input.value;
+				addOperation(() => (input.value = lastValue));
 				input.value = lorem.substr(0, input.value.length);
 			});
 		}
@@ -50,6 +54,8 @@ window.loremiscous =
 				if (tag.style.background.match('url') || tag.style.backgroundImage) {
 					var bg = tag.style.background;
 					// allBackgroundURLs.push({tag, bg.substr(bg.indexOf("url") + 4, bg.lastIndexOf(")") - (bg.indexOf("url") + 4) ) });
+					const lastValue = tag.style.backgroundImage;
+					addOperation(() => (tag.style.backgroundImage = lastValue));
 					tag.style.backgroundImage = 'url(https://picsum.photos/200?random)';
 				}
 			}
@@ -81,7 +87,7 @@ window.loremiscous =
 			nodes.forEach(n => {
 				const lastValue = n.nodeValue;
 				addOperation(() => (n.nodeValue = lastValue));
-				n.nodeValue = lorem.substr(0, n.nodeValue.length);
+				n.nodeValue = lorem.substr(0, n.nodeValue.trim().length);
 			});
 		}
 
