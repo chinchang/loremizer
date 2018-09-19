@@ -50,7 +50,7 @@ window.loremiscous =
 			var numTags = tags.length;
 			let computedStyles;
 			for (var i = 0; i < numTags; i++) {
-				tag = tags[i];
+				const tag = tags[i];
 				computedStyles = window.getComputedStyle(tag);
 				if (computedStyles.backgroundImage !== 'none') {
 					const lastValue = computedStyles.backgroundImage;
