@@ -46,15 +46,14 @@ window.loremiscous =
 		}
 
 		function replaceBgImgs() {
-			var allBackgroundURLs = new Array();
 			var tags = [...document.querySelectorAll('*')];
 			var numTags = tags.length;
+			let computedStyles;
 			for (var i = 0; i < numTags; i++) {
 				tag = tags[i];
-				if (tag.style.background.match('url') || tag.style.backgroundImage) {
-					var bg = tag.style.background;
-					// allBackgroundURLs.push({tag, bg.substr(bg.indexOf("url") + 4, bg.lastIndexOf(")") - (bg.indexOf("url") + 4) ) });
-					const lastValue = tag.style.backgroundImage;
+				computedStyles = window.getComputedStyle(tag);
+				if (computedStyles.backgroundImage !== 'none') {
+					const lastValue = computedStyles.backgroundImage;
 					addOperation(() => (tag.style.backgroundImage = lastValue));
 					tag.style.backgroundImage = 'url(https://picsum.photos/200?random)';
 				}
