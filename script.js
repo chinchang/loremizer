@@ -60,18 +60,22 @@ window.loremiscous =
 			}
 		}
 
-		function getTextNodesIn(elem, opt_fnFilter) {
+		function getTextNodesIn(elem, filterFn) {
 			var textNodes = [];
 			if (elem) {
 				for (var nodes = elem.childNodes, i = nodes.length; i--; ) {
 					var node = nodes[i],
 						nodeType = node.nodeType;
 					if (nodeType == 3) {
-						if (!opt_fnFilter || opt_fnFilter(node, elem)) {
+						if (!filterFn || filterFn(node, elem)) {
 							textNodes.push(node);
 						}
-					} else if (nodeType == 1 || nodeType == 9 || nodeType == 11) {
-						textNodes = textNodes.concat(getTextNodesIn(node, opt_fnFilter));
+					} else if (
+						node.tagName !== 'SCRIPT' &&
+						node.tagName !== 'STYLE' &&
+						(nodeType == 1 || nodeType == 9 || nodeType == 11)
+					) {
+						textNodes = textNodes.concat(getTextNodesIn(node, filterFn));
 					}
 				}
 			}
