@@ -1,9 +1,8 @@
 {
 	"description": "lorem ipsum-izes any web page",
 	"manifest_version": 2,
-	"name": "loremiscous",
+	"name": "loremizer",
 	"version": "1.0",
-	"homepage_url": "https://github.com/chinchang/loremiscous",
 
 	"background": {
 		"scripts": ["background.js"]

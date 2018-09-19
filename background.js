@@ -1,6 +1,5 @@
-const CSS = 'body { border: 20px solid red; }';
-const TITLE_APPLY = 'loremiscous';
-const TITLE_REMOVE = 'Remove loremiscous';
+const TITLE_APPLY = 'loremizer';
+const TITLE_REMOVE = 'Remove loremizer';
 
 const browser = window.chrome || browser;
 
@@ -30,6 +29,6 @@ function toggle(tab) {
 }
 
 /*
-Toggle CSS when the page action is clicked.
+Toggle Loremizer when the page action is clicked.
 */
 browser.browserAction.onClicked.addListener(toggle);
