@@ -41,7 +41,20 @@ window.loremiscous =
 			inputs.forEach(input => {
 				const lastValue = input.value;
 				addOperation(() => (input.value = lastValue));
-				input.value = lorem.substr(0, input.value.length);
+				const inputName = input.name || '';
+				if (inputName.match(/(first-name|firstname)/)) {
+					input.value = 'John';
+				} else if (inputName.match(/(last-name|lastname)/)) {
+					input.value = 'Doe';
+				} else if (inputName.match(/name/)) {
+					input.value = 'John Doe';
+				} else if (input.type === 'email' || inputName.match(/mail/)) {
+					input.value = 'johndoe@gmail.com';
+				} else if (input.type === 'tel' || inputName.match(/(phone|mobile)/)) {
+					input.value = '0113246327846';
+				} else {
+					input.value = lorem.substr(0, input.value.length || 20);
+				}
 			});
 		}
 
