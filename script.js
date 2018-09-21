@@ -99,20 +99,29 @@ window.loremiscous =
 			operations = [];
 		}
 
-		function runLoremiscous() {
+		function runLoremiscous(options) {
 			if (operations.length) {
 				undo();
 			} else {
-				requestIdleCallback(replaceText);
-				requestIdleCallback(replaceImgs);
-				requestIdleCallback(replaceBgImgs);
-				requestIdleCallback(handleIframes);
-
+				if (options.includes('replaceText')) {
+					requestIdleCallback(replaceText);
+				}
+				if (options.includes('replaceImage')) {
+					requestIdleCallback(replaceImgs);
+				}
+				if (options.includes('replaceBgImage')) {
+					requestIdleCallback(replaceBgImgs);
+				}
+				if (options.includes('replaceIframe')) {
+					requestIdleCallback(handleIframes);
+				}
 				// TODO: Replacing form control values can trigger unexpected behavior.
-				// requestIdleCallback(handleFormInputs)
+				if (options.includes('replaceInput')) {
+					requestIdleCallback(handleFormInputs);
+				}
 			}
 		}
 		return runLoremiscous;
 	})();
 
-window.loremiscous();
+// window.loremiscous();

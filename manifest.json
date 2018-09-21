@@ -10,6 +10,7 @@
 
 	"browser_action": {
 		"default_icon": "icons/off.png",
+		"default_popup": "popup.html",
 		"browser_style": true
 	},
 	"icons": {
@@ -17,5 +18,5 @@
 		"48": "icons/off.png"
 	},
 
-	"permissions": ["activeTab", "tabs"]
+	"permissions": ["activeTab", "<all_urls>", "tabs"]
 }

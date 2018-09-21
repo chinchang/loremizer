@@ -4,6 +4,7 @@ const TITLE_REMOVE = 'Remove loremizer';
 const browser = window.chrome || browser;
 
 function toggle(tab) {
+	console.log(99999);
 	function gotTitle(title) {
 		if (title === TITLE_APPLY) {
 			browser.browserAction.setIcon({ tabId: tab.id, path: 'icons/on.png' });
