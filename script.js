@@ -42,9 +42,9 @@ window.loremiscous =
 				const lastValue = input.value;
 				addOperation(() => (input.value = lastValue));
 				const inputName = input.name || '';
-				if (inputName.match(/(first-name|firstname)/)) {
+				if (inputName.match(/(first-name|firstname|first_name)/)) {
 					input.value = 'John';
-				} else if (inputName.match(/(last-name|lastname)/)) {
+				} else if (inputName.match(/(last-name|lastname|last_name)/)) {
 					input.value = 'Doe';
 				} else if (inputName.match(/name/)) {
 					input.value = 'John Doe';
