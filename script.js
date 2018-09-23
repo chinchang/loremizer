@@ -4,7 +4,7 @@ window.loremiscous =
 		const lorem =
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc non est positum in nostra actione. Dat enim intervalla et relaxat. Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. Quasi vero, inquit, perpetua oratio rhetorum solum, non etiam philosophorum sit. Pauca mutat vel plura sane Ne tum quidem te respicies et cogitabis sibi quemque natum esse et suis voluptatibus? Duo Reges constructio interrete. Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium.';
 		// https://loripsum.net/
-		const browser = window.chrome || browser;
+		const env = window.chrome || browser;
 		var imgs = [...document.querySelectorAll('img')];
 		var operations = [];
 
@@ -140,7 +140,7 @@ window.loremiscous =
 			style.textContent = `
 				@font-face {
 					font-family: "Redacted Script";
-					src: url("${browser.runtime.getURL('fonts/redacted-script-regular.woff')}");
+					src: url("${env.runtime.getURL('fonts/redacted-script-regular.woff')}");
 				}
 				*,*:after,*:before {
 					font-family: 'Redacted Script'!important;
