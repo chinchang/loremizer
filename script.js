@@ -2,7 +2,7 @@ window.loremiscous =
 	window.loremiscous ||
 	(function() {
 		const lorem =
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc non est positum in nostra actione. Dat enim intervalla et relaxat. Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. Quasi vero, inquit, perpetua oratio rhetorum solum, non etiam philosophorum sit. Pauca mutat vel plura sane; Ne tum quidem te respicies et cogitabis sibi quemque natum esse et suis voluptatibus? Duo Reges: constructio interrete. Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium.';
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc non est positum in nostra actione. Dat enim intervalla et relaxat. Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. Quasi vero, inquit, perpetua oratio rhetorum solum, non etiam philosophorum sit. Pauca mutat vel plura sane Ne tum quidem te respicies et cogitabis sibi quemque natum esse et suis voluptatibus? Duo Reges constructio interrete. Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium.';
 		// https://loripsum.net/
 
 		var imgs = [...document.querySelectorAll('img')];
@@ -103,7 +103,35 @@ window.loremiscous =
 			nodes.forEach(n => {
 				const lastValue = n.nodeValue;
 				addOperation(() => (n.nodeValue = lastValue));
-				n.nodeValue = lorem.substr(0, n.nodeValue.trim().length);
+				// replace numbers with numbers and strings with strings
+				n.nodeValue = n.nodeValue.replace(/\s+/g, ' ');
+				n.nodeValue = n.nodeValue
+					// Matches digits, non-whitespace special chacters, underscore or spacers
+					.split(/(\d+|[^\w\s]|_|\s)/)
+					.map(str => {
+						// If this is just numbers
+						if (parseInt(str, 10)) {
+							return parseInt(
+								Math.random()
+									.toString()
+									.slice(2, Math.min(str.length + 2, 18)),
+								10
+							);
+						} else if (
+							str.length === 1 &&
+							(str.match(/[^\w]/) || str === '_')
+						) {
+							// If single special character or _
+							return str;
+						} else {
+							return lorem
+								.split(' ')
+								.sort(() => (Math.random() > 0.5 ? 1 : -1))
+								.join(' ')
+								.substr(0, str.length);
+						}
+					})
+					.join('');
 			});
 		}
 
