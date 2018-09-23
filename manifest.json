@@ -13,6 +13,9 @@
 		"16": "icons/off.png",
 		"48": "icons/off.png"
 	},
+	"web_accessible_resources": [
+		"fonts/*"
+	],
 
 	"permissions": ["activeTab", "<all_urls>", "tabs"]
 }
