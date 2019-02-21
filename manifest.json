@@ -2,7 +2,7 @@
   "description": "lorem ipsum-izes any web page",
   "manifest_version": 2,
   "name": "loremizer",
-  "version": "1.1",
+  "version": "1.2",
 
   "browser_action": {
     "default_icon": "icons/off.png",
