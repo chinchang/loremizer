@@ -8,10 +8,18 @@ Say you want to take a screenshot of a web page, but it contains some sensitive 
 ## Features
 
 - 🙃 Randomize texts and numbers
+- 📊 Increase/Decrease text lengths
 - 🖼 Replace images
 - ⚡️ Fill forms
 - 〰 Convert text to scribble!
 
+## Use-cases
+
+- You want to take screenshot of a page with some confidential information.
+- Fill a form with dummy (but contextual) information.
+- Test a page with shorter or longer texts as a designer.
+- Converting all text to scribble to avoid reviewers distraction towards copy.
+
 ## License
 
-Released under THE MIT License. Copyright 2018 Kushagra Gour.
+Released under THE MIT License. Copyright 2018-2019 Kushagra Gour.
