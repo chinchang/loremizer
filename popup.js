@@ -105,12 +105,16 @@ function setUi(settings) {
   textLengthMultiplierValue.textContent = `${textLengthMultiplierInput.value}x`;
 }
 
+// Change review link if it's firefox
+if (navigator.userAgent.match(/firefox/i)) {
+  reviewLink.href = "https://addons.mozilla.org/en-US/firefox/addon/loremizer/";
+}
+
 getCurrentTab().then(tab => {
   getIconTitle(tab.id).then(title => {
     const storageKey = `loremizer${tab.id}`;
     try {
       const result = JSON.parse(localStorage.getItem(storageKey));
-      console.log("Storage ", result);
       if (result) {
         setUi(result);
       }
