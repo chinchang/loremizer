@@ -41,24 +41,31 @@ function toggle(tab) {
       browser.browserAction.setIcon({ tabId: tab.id, path: "icons/on.png" });
       browser.browserAction.setTitle({ tabId: tab.id, title: TITLE_REMOVE });
       const selectedOptions = [
-        ...document.querySelectorAll('input[type="checkbox"]:checked'),
+        ...document.querySelectorAll('input[type="checkbox"]'),
         ...document.querySelectorAll("[data-setting]")
       ].reduce((obj, input) => {
-        obj[input.name] = input.value;
+        obj[input.name] =
+          input.type === "checkbox" ? input.checked : input.value;
         return obj;
       }, {});
+      const jsonedSettings = JSON.stringify(selectedOptions);
+
+      // Store applied setting to repopulate UI next time popup is opened
+      localStorage.setItem(`loremizer${tab.id}`, jsonedSettings);
 
       executeScript(tab.id, {
         file: "script.js"
       }).then(() => {
         executeScript(tab.id, {
-          code: `window.loremiscous(${JSON.stringify(selectedOptions)});`
+          code: `window.loremiscous(${jsonedSettings});`
         });
       });
       onActivation();
     } else {
       browser.browserAction.setIcon({ tabId: tab.id, path: "icons/off.png" });
       browser.browserAction.setTitle({ tabId: tab.id, title: TITLE_APPLY });
+      localStorage.setItem(`loremizer${tab.id}`, undefined);
+
       executeScript(tab.id, {
         code: `window.loremiscous();`
       });
@@ -86,10 +93,31 @@ deactivateBtn.addEventListener("click", btnClickHandler);
 textLengthMultiplierInput.addEventListener("change", e => {
   textLengthMultiplierValue.textContent = `${e.target.value}x`;
 });
-textLengthMultiplierValue.textContent = `${textLengthMultiplierInput.value}x`;
+function setUi(settings) {
+  for (let name in settings) {
+    const el = document.querySelector(`[name=${name}]`);
+    if (el.type === "checkbox") {
+      el.checked = settings[name];
+    } else {
+      el.value = settings[name];
+    }
+  }
+  textLengthMultiplierValue.textContent = `${textLengthMultiplierInput.value}x`;
+}
 
 getCurrentTab().then(tab => {
   getIconTitle(tab.id).then(title => {
+    const storageKey = `loremizer${tab.id}`;
+    try {
+      const result = JSON.parse(localStorage.getItem(storageKey));
+      console.log("Storage ", result);
+      if (result) {
+        setUi(result);
+      }
+    } catch (e) {
+      console.log("Settings couldnt get back", e);
+    }
+
     if (title === TITLE_REMOVE) {
       onActivation();
     }
