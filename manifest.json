@@ -15,5 +15,5 @@
   },
   "web_accessible_resources": ["fonts/*"],
 
-  "permissions": ["activeTab", "<all_urls>", "tabs"]
+  "permissions": ["activeTab", "<all_urls>"]
 }
