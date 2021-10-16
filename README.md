@@ -22,4 +22,4 @@ Say you want to take a screenshot of a web page, but it contains some sensitive 
 
 ## License
 
-Released under THE MIT License. Copyright 2018-2019 Kushagra Gour.
+Released under THE MIT License. Copyright 2018-2021 Kushagra Gour.
